@@ -17,8 +17,15 @@ function addTodo(text) {
   const todo = todoTemplateElement.content.cloneNode(true);
 
   todo.querySelector('.todo__text').textContent = text;
+  todo.querySelector('.todo__btn_type_delete').addEventListener('click', deleteTodo);
 
   todosListElement.prepend(todo);
+}
+
+function deleteTodo(e) {
+  const todo = e.target.closest('.todo');
+
+  todo.remove();
 }
 
 todos.forEach(text => {
