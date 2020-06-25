@@ -24,6 +24,7 @@ function addTodo(text) {
 function addTodoListeners(todo) {
   todo.querySelector('.todo__btn_type_delete').addEventListener('click', deleteTodo);
   todo.querySelector('.todo__btn_type_edit').addEventListener('click', editTodo);
+  todo.querySelector('.todo__btn_type_duplicate').addEventListener('click', duplicateTodo);
 }
 
 function deleteTodo(e) {
@@ -36,6 +37,15 @@ function editTodo(e) {
   const todo = e.target.closest('.todo');
 
   setTodotoForm(todo);
+}
+
+function duplicateTodo(e) {
+  const todo = e.target.closest('.todo');
+
+  const newTodo = todo.cloneNode(true);
+  addTodoListeners(newTodo);
+
+  todo.after(newTodo);
 }
 
 function setTodotoForm(todo) {
